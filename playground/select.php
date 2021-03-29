@@ -18,9 +18,11 @@
    <body>
        <table border="1" width="100%">
          <tr>
-            <td> User ID </td>
-            <td> Username</td>
-            <td> Status</td>
+            <td> รหัส </td>
+            <td> ชื่อผู้ใช้</td>
+            <td> สถานะ</td>
+            <td> แก้ไข</td>
+            <td> ลบ</td>
          <tr>
     <?php
 
@@ -31,6 +33,8 @@
             <td> <?php echo $row["id_user"]; ?></td>
             <td> <?php echo $row["username"]; ?></td>
             <td> <?php echo $row["status"]; ?></td>
+            <td>edit</td>
+            <td><a href="delete.php?id=<?php echo $row["id_user"]; ?>">delete</a></td>
          <tr>
      <?php
     }
