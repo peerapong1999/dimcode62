@@ -1,11 +1,9 @@
 <?php
 require_once 'connectdb.php';
-$id_user = " ";
-$username = " ";
-$status = " ";
+$id_user = "";
+$username = "";
+$status = "";
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-
-
     $id_user = "";
     if(isset($_GET["id"]) && $_GET["id"] != ''){
       $id_user = $_GET["id"];
@@ -18,15 +16,15 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-
-    $frmUsername = $frmPassword = "";
-    $frmUsername = $_POST["username"];
-    $frmPassword = $_POST["password"];
-
-    if ($frmUsername && $frmPassword) {
-        $strSQL = "UPDATE `user` SET `id_user`=[value-1],`username`=[value-2],`password`=[value-3],`status`=[value-4] WHERE id_user=".$id_user;
-
+    $username = $status = "";
+    $id_user = $_GET["id"];
+    $username = $_POST["username"];
+    $status = $_POST["status"];
+    $strSQL = "UPDATE `user` SET username='" .$username ."',status=".$status." WHERE id_user=".$id_user;
+    if (($username == ""&& $status == "")) {
+        echo "ไม่สามารถเพิ่มข้อมูลได้";
+    }else{
+        echo $strSQL; 
         $result = $myconn->query($strSQL);
         if ($result) {
             echo "เพิ่มข้อมูลสำเร็จ";
@@ -48,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <form action="update.php" method="post">
+    <form action="update.php?id=<?=$id_user?>" method="post">
         <table border="1">
             <tr>
                 <td>username</td>
